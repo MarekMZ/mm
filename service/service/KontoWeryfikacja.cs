@@ -7,14 +7,14 @@ namespace service
 {
     public interface IKontoWeryfikacja
     {
-        public WynikOperacji Weryfikuj();
+        public WynikOperacji Weryfikuj(Konto konto);
     }
     
     
     
     public class KontoWeryfikacja : IKontoWeryfikacja
     {
-        public WynikOperacji Weryfikuj()
+        public WynikOperacji Weryfikuj(Konto konto)
         {
             WynikOperacji wynik = new WynikOperacji();
 

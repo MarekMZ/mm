@@ -20,11 +20,11 @@ namespace data
 
     public static class BazaKont
     {
-        public static List<Konto> konta = new List<Konto>
+        public static List<KontoInformacje> konta = new List<KontoInformacje>
         {
-            new Konto{ Numer = 1, CzyZweryfikowane = null, kontoStatus = KontoStatus.otwarte, Kwota = 100 },
-            new Konto{ Numer = 2, CzyZweryfikowane = null, kontoStatus = KontoStatus.zamkniete, Kwota = 0 },
-            new Konto{ Numer = 3, CzyZweryfikowane = null, kontoStatus = KontoStatus.zamrozone, Kwota = 300}
+            new KontoInformacje{ Numer = 1, kontoStatus = KontoStatus.otwarte, Saldo = 100 },
+            new KontoInformacje{ Numer = 2, kontoStatus = KontoStatus.zamkniete, Saldo = 0 },
+            new KontoInformacje{ Numer = 3, kontoStatus = KontoStatus.zamrozone, Saldo = 300}
         };
     }
     

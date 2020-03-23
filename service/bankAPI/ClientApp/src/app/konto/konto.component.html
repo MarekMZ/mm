@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+  <table>
+    <tr>
+      <td>Nr konta (1,2,3)</td>
+      <td>
+        <input type="text" [(ngModel)]="kontoNr" />
+      </td>
+    </tr>
+    <tr>
+      <td>Kwota</td>
+      <td> <input type="text" [(ngModel)]="kwota"  /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button (click)="wplac()">Wpłać</button>
+        <button (click)="wyplac()">Wypłać</button>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

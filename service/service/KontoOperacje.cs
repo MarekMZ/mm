@@ -1,5 +1,6 @@
 ﻿using data;
 using System;
+using System.Linq;
 
 namespace service
 {
@@ -23,35 +24,48 @@ namespace service
         public WynikOperacjiNaKoncie Wplata(Konto konto)
         {
             WynikOperacjiNaKoncie wynik = new WynikOperacjiNaKoncie();
-            if (konto.kontoStatus == KontoStatus.zamkniete)
+
+            KontoInformacje ko = BazaKont.konta.Where(k => k.Numer == konto.Numer).FirstOrDefault();
+
+
+            if (ko.kontoStatus == KontoStatus.zamkniete)
             {
                 wynik.Komunikat = "odmowa wyplaty - konto zamknięte";
                 return wynik;
             }
 
+            ko.Saldo += konto.Kwota;
+            ko.kontoStatus = KontoStatus.otwarte;
+
             wynik.Komunikat = "";
-            wynik.SaldoPoOperacji = konto.Kwota + 200;
-            wynik.KontoStatus = KontoStatus.otwarte;
+            wynik.SaldoPoOperacji = ko.Saldo;
+            wynik.KontoStatus = ko.kontoStatus;
             return wynik;
         }
 
         public WynikOperacjiNaKoncie Wyplata(Konto konto)
         {
             WynikOperacjiNaKoncie wynik = new WynikOperacjiNaKoncie();
+
+            KontoInformacje ko = BazaKont.konta.Where(k => k.Numer == konto.Numer).FirstOrDefault();
+
             if (konto.CzyZweryfikowane != true)
             {
                 wynik.Komunikat = "odmowa wyplaty - konto niezweryfikowane";
                 return wynik;
             }
-            if(konto.kontoStatus == KontoStatus.zamkniete)
+            if(ko.kontoStatus == KontoStatus.zamkniete)
             {
                 wynik.Komunikat = "odmowa wyplaty - konto zamknięte";
                 return wynik;
             }
-            
+
+            ko.Saldo -= konto.Kwota;
+            ko.kontoStatus = KontoStatus.otwarte;
+
             wynik.Komunikat = "";
-            wynik.SaldoPoOperacji = konto.Kwota - 200;
-            wynik.KontoStatus = KontoStatus.otwarte;
+            wynik.SaldoPoOperacji = ko.Saldo;
+            wynik.KontoStatus = ko.kontoStatus;
             return wynik;
         }
 

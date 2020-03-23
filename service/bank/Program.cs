@@ -24,24 +24,24 @@ namespace bank
             IKontoWeryfikacja kontoWeryfikacja =_servicesProvider.GetRequiredService<IKontoWeryfikacja>();
 
 
-            Konto konto = BazaKont.konta.Where(k => k.Numer == 1).FirstOrDefault();
+            KontoInformacje konto = BazaKont.konta.Where(k => k.Numer == 1).FirstOrDefault();
 
 
-            while (Console.ReadKey().KeyChar == '1')
-            {
-                var kop = kontoWeryfikacja.Weryfikuj(konto);
-                if (kop.WynikPoprawny)
-                {
-                    Console.WriteLine("wynik ok");
-                    konto.CzyZweryfikowane = true;
-                }
-                else
-                {
-                    Console.WriteLine($"bład: {kop.Komunikat}");
-                    konto.CzyZweryfikowane = false;
-                }
-            }
-            Console.ReadKey();
+            //while (Console.ReadKey().KeyChar == '1')
+            //{
+            //    var kop = kontoWeryfikacja.Weryfikuj(konto);
+            //    if (kop.WynikPoprawny)
+            //    {
+            //        Console.WriteLine("wynik ok");
+            //        konto.CzyZweryfikowane = true;
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine($"bład: {kop.Komunikat}");
+            //        konto.CzyZweryfikowane = false;
+            //    }
+            //}
+            //Console.ReadKey();
             Console.WriteLine("Hello World!");
         }
     }
