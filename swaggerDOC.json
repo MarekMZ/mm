@@ -1,0 +1,143 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "My API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Konto/wplac/{nrKonta}/{kwota}": {
+      "get": {
+        "tags": [
+          "Konto"
+        ],
+        "parameters": [
+          {
+            "name": "nrKonta",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "kwota",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Konto/wyplac/{nrKonta}/{kwota}": {
+      "get": {
+        "tags": [
+          "Konto"
+        ],
+        "parameters": [
+          {
+            "name": "nrKonta",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "kwota",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Konto/info/{nrKonta}": {
+      "get": {
+        "tags": [
+          "Konto"
+        ],
+        "parameters": [
+          {
+            "name": "nrKonta",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Konto/zamrozenie/{nrKonta}": {
+      "get": {
+        "tags": [
+          "Konto"
+        ],
+        "parameters": [
+          {
+            "name": "nrKonta",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Konto/zamkniecie/{nrKonta}": {
+      "get": {
+        "tags": [
+          "Konto"
+        ],
+        "parameters": [
+          {
+            "name": "nrKonta",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": { }
+}
