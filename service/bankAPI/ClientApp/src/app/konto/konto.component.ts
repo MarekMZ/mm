@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { KontoInformacje } from './KontoInformacje';
 
 @Component({
   selector: 'app-konto',
@@ -8,35 +9,40 @@ import { HttpClient } from '@angular/common/http';
 export class KontoComponent {
 
 
-  kontoNr: number = 666;
-  kwota: number = 200;
+  kontoNr: number;
+  kwota: number;
   url: string;
-
+  info: KontoInformacje;
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-
-
-    console.log(baseUrl + '><>>>>>>  weatherforecast')
     this.url = baseUrl;
-
-
-
-    //http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
-    //  this.forecasts = result;
-    //}, error => console.error(error));
-
-
   }
 
 
   wplac() {
-    console.log(this.url + '><>>>>>>  wplac' + this.kwota)
-    this.http.get(this.url + 'api/konto/wplac/3/4').subscribe(result => {
+    let adres = this.url + 'api/konto/wplac/' + this.kontoNr + '/' + this.kwota;
+    console.log(adres);
+    this.http.get(adres).subscribe(result => {
+      console.log(result);
+    }, error => console.error(error));
+    this.informacje();
+  }
+
+  wyplac() {
+    let adres = this.url + 'api/konto/wyplac/' + this.kontoNr + '/' + this.kwota;
+    console.log(adres);
+    this.http.get(adres).subscribe(result => {
       console.log(result);
     }, error => console.error(error));
   }
 
-  wyplac() {
-    console.log(this.url  + '><>>>>>>  wyplac')
+  informacje() {
+    let adres = this.url + 'api/konto/info/' + this.kontoNr;
+    console.log(adres);
+    this.http.get<KontoInformacje>(adres).subscribe(result => {
+      this.info = result;
+      console.log(result);
+    }, error => console.error(error));
+
   }
 
 }

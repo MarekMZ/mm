@@ -6,16 +6,14 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
+//import { HomeComponent } from './home/home.component';
 import { KontoComponent } from './konto/konto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
+    //HomeComponent,
     KontoComponent
   ],
   imports: [
@@ -23,9 +21,8 @@ import { KontoComponent } from './konto/konto.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'konto', component: KontoComponent }
+      //{ path: 'home', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: KontoComponent }
     ])
   ],
   providers: [],

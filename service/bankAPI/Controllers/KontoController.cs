@@ -58,10 +58,43 @@ namespace bankAPI.Controllers
         [HttpGet("info/{nrKonta:int}")]
         public IActionResult info(int nrKonta)
         {
-            KontoInformacje konto = BazaKont.konta.Where(k => k.Numer == nrKonta).FirstOrDefault();
+            KontoInformacje konto = _kontoOperacje.Info(nrKonta);
             return Ok(konto);
         }
 
+        [HttpGet("zamrozenie/{nrKonta:int}")]
+        public IActionResult zamrozenie(int nrKonta)
+        {
+            Konto konto = new Konto();
+            konto.Numer = nrKonta;
+            var weryfikacja = _kontoWeryfikacja.Weryfikuj(konto);
+            if (weryfikacja.WynikPoprawny == false)
+            {
+                return Ok(weryfikacja);
+            }
+            else
+            {
+                konto.CzyZweryfikowane = true;
+                return Ok(_kontoOperacje.Zamrozenie(konto));
+            }
+        }
 
+
+        [HttpGet("zamkniecie/{nrKonta:int}")]
+        public IActionResult zamkniecie(int nrKonta)
+        {
+            Konto konto = new Konto();
+            konto.Numer = nrKonta;
+            var weryfikacja = _kontoWeryfikacja.Weryfikuj(konto);
+            if (weryfikacja.WynikPoprawny == false)
+            {
+                return Ok(weryfikacja);
+            }
+            else
+            {
+                konto.CzyZweryfikowane = true;
+                return Ok(_kontoOperacje.Zamkniecie(konto));
+            }
+        }
     }
 }

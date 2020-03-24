@@ -31,7 +31,7 @@ namespace service
             {
                 wynik.Komunikat = "";
             }
-            return wynik;
+            return new WynikOperacji { Komunikat = "" };
         }
 
     }

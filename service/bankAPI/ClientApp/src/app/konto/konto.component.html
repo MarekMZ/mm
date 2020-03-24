@@ -14,7 +14,7 @@
     </tr>
     <tr>
       <td>Kwota</td>
-      <td> <input type="text" [(ngModel)]="kwota"  /></td>
+      <td><input type="text" [(ngModel)]="kwota" /></td>
     </tr>
     <tr>
       <td colspan="2">
@@ -23,5 +23,24 @@
       </td>
     </tr>
   </table>
+  <br />
+  <br />
+  <button (click)="informacje()">Informacje o koncie</button>
+  <div *ngIf="info">
+    <table>
+      <tr>
+        <td>Nr konta</td>
+        <td align="right">{{info.numer}}</td>
+      </tr>
+      <tr>
+        <td>Saldo</td>
+        <td align="right">{{info.saldo}}</td>
+      </tr>
+      <tr>
+        <td>Status</td>
+        <td align="right">{{info.kontoStatusOpis}}</td>
+      </tr>
+    </table>
+  </div>
 </body>
 </html>

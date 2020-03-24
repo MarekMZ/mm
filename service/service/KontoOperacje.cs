@@ -13,6 +13,8 @@ namespace service
         public WynikOperacjiNaKoncie Zamrozenie(Konto konto);
 
         public WynikOperacjiNaKoncie Zamkniecie(Konto konto);
+
+        public KontoInformacje Info(int kontoNr);
     }
 
 
@@ -69,14 +71,28 @@ namespace service
             return wynik;
         }
 
-        public WynikOperacjiNaKoncie Zamkniecie(Konto konto)
+        public KontoInformacje Info(int kontoNr)
         {
-            return new WynikOperacjiNaKoncie { Komunikat = "", SaldoPoOperacji = 0, KontoStatus = KontoStatus.zamkniete };
+            KontoInformacje informacje = BazaKont.konta.Where(k => k.Numer == kontoNr).FirstOrDefault();
+            informacje.kontoStatusOpis = informacje.kontoStatus.ToString();
+            return informacje;
         }
+
 
         public WynikOperacjiNaKoncie Zamrozenie(Konto konto)
         {
+            KontoInformacje informacje = BazaKont.konta.Where(k => k.Numer == konto.Numer).FirstOrDefault();
+            informacje.kontoStatus = KontoStatus.zamrozone;
             return new WynikOperacjiNaKoncie { Komunikat = "", SaldoPoOperacji = konto.Kwota, KontoStatus = KontoStatus.zamrozone };
         }
+
+        public WynikOperacjiNaKoncie Zamkniecie(Konto konto)
+        {
+            KontoInformacje informacje = BazaKont.konta.Where(k => k.Numer == konto.Numer).FirstOrDefault();
+            informacje.kontoStatus = KontoStatus.zamkniete;
+            return new WynikOperacjiNaKoncie { Komunikat = "", SaldoPoOperacji = 0, KontoStatus = KontoStatus.zamkniete };
+        }
+
+
     }
 }

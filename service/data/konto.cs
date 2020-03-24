@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace data
 {
     public enum KontoStatus
     {
+        [Description("Otwarte")]
         otwarte = 1,
+        [Description("Zamrożone")]
         zamrozone = 2,
+        [Description("Zamknięte")]
         zamkniete = 3
     }
 
